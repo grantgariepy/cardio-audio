@@ -1,23 +1,19 @@
-import { type NextRequest } from 'next/server';
 import { getTopTracks } from '../../lib/spotify';
+import { getSession } from 'next-auth/react';
 
-
-export default async function handler(req: NextRequest) {
-  const response = await getTopTracks();
+const handler = async (req: any, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { items: any; }): any; new(): any; }; }; }) => {
+  const {
+    token: { accessToken },
+  } = await getSession({ req });
+  const response = await getTopTracks(accessToken);
   const { items } = await response.json();
 
-  console.log(items)
-  const tracks = items.slice(0, 10).map((track) => ({
-    artist: track.artists.map((_artist) => _artist.name).join(', '),
-    songUrl: track.external_urls.spotify,
-    title: track.name
-  }));
+  // const tracks = items.slice(0, 10).map((track) => ({
+  //   artist: track.artists.map((_artist) => _artist.name).join(', '),
+  //   songUrl: track.external_urls.spotify,
+  //   title: track.name
+  // }));
 
-  return new Response(JSON.stringify({ tracks }), {
-    status: 200,
-    headers: {
-      'content-type': 'application/json',
-      'cache-control': 'public, s-maxage=86400, stale-while-revalidate=43200'
-    }
-  });
-}
+  return res.status(200).json({ items });
+};
+export default handler;

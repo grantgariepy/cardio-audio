@@ -3,11 +3,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-
-
 const Home: NextPage = () => {
-
-  const {data: session} = useSession();
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <>
       <Head>
@@ -17,28 +15,35 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <div>
-          <div className="hero bg-base-200 min-h-screen">
+          <div className="hero min-h-screen bg-base-200">
             <div className="hero-content text-center">
               <div className="max-w-md">
                 <h1 className="text-5xl font-bold">Hello there!</h1>
                 <h2 className="pt-3 text-3xl font-bold">
-                  Welcome to CardioAud.io! 
+                  Welcome to CardioAud.io!
                 </h2>
                 <p className="py-6">
-                  This app will allow you to connect your Spotify 
-                  and see your top 5 tracks! Click the button below
-                  to connect your Spotify Account!
+                  This app will allow you to connect your Spotify and see your
+                  top 5 tracks! Click the button below to connect your Spotify
+                  Account!
                 </p>
-                {session  ? (
-
+                {session ? (
                   <>
-                    <p>Signed in as {session?.user?.name}</p>
-                    <button onClick={() => signOut()} className="btn btn-success rounded mt-3" >Logout</button>
+                    <p>Signed in as {session.token.name}</p>
+                    <button
+                      onClick={() => signOut()}
+                      className="btn-success btn mt-3 rounded"
+                    >
+                      Logout
+                    </button>
                   </>
                 ) : (
-
-                
-                <button onClick={() => signIn()} className="btn btn-success rounded mt-3">Connect</button>
+                  <button
+                    onClick={() => signIn()}
+                    className="btn-success btn mt-3 rounded"
+                  >
+                    Connect
+                  </button>
                 )}
               </div>
             </div>
