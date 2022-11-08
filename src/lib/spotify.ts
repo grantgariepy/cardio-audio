@@ -5,7 +5,7 @@ const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5&offset=0`;
 
 
-const getAccessToken = async (refresh_token: any) => {
+const getAccessToken = async (refresh_token: string) => {
   const response = await fetch(TOKEN_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -22,7 +22,7 @@ const getAccessToken = async (refresh_token: any) => {
 };
 
 
-export const getTopTracks = async (refresh_token: any) => {
+export const getTopTracks = async (refresh_token: string) => {
   const { access_token } = await getAccessToken(refresh_token);
  
   return fetch(TOP_TRACKS_ENDPOINT, {

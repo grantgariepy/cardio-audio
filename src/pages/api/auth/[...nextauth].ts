@@ -1,5 +1,6 @@
 
-import NextAuth from 'next-auth'
+import { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import SpotifyProvider from "next-auth/providers/spotify";
 
 const options = {
@@ -10,14 +11,14 @@ const options = {
         'https://accounts.spotify.com/authorize?scope=user-top-read',
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      // profile(profile) {
-      //   return {
-      //     id: profile.id,
-      //     name: profile.display_name,
-      //     email: profile.email,
-      //     image: profile.images?.[0]?.url
-      //   }
-      // },
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.display_name,
+          email: profile.email,
+          image: profile.images?.[0]?.url
+        }
+      },
     }),
   ],
   callbacks: {
@@ -27,7 +28,7 @@ const options = {
       }
       return token;
     },
-    async session(session, user, token) {
+    async session(session: { user: any; }, user: any ) {
       session.user = user;
       return session;
     },
@@ -36,4 +37,4 @@ const options = {
   database: process.env.DATABASE_URL
 }
 
-export default (req, res) => NextAuth(req, res, options);
+export default (req: NextAuthOptions | NextApiRequest, res: NextApiResponse<any>) => NextAuth(req, res, options);
