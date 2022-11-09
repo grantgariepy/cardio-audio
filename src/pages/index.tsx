@@ -32,14 +32,14 @@ const Home: NextPage = () => {
                 </p>
                 {session ? (
                   <>
-                    <p>Signed in as {session.token.name}</p>
+                    {/* <p>Signed in as {session.token.name}</p> */}
                     <div className="hero-content text-center">
-                      <img
+                      {/* <img
                         src={session?.token?.picture}
                         alt=""
                         width="100px"
                         className="mask mask-circle"
-                      />
+                      /> */}
                     </div>
                     <button
                       onClick={() => signOut()}
