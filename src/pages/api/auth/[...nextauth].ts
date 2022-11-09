@@ -22,7 +22,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res,
       }
       return token;
     },
-    async session(session: { user: any; } , user: any, token: any ) {
+    async session(session: any , user: any) {
       session.user = user;
       return session;
     },
