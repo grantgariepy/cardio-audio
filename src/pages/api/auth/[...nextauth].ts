@@ -1,5 +1,4 @@
 
-import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import SpotifyProvider from "next-auth/providers/spotify";
 import { env

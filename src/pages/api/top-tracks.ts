@@ -22,7 +22,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
  
-  const token = await getToken({ req });
+  const token = await getToken({ req })
   // @ts-ignore
   const accessToken: string = token?.accessToken;
   const response = await getTopTracks(accessToken);
