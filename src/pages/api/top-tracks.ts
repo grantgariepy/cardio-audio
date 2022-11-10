@@ -23,8 +23,10 @@ export default async function handler(
 ) {
  
   const token = await getToken({ req });
-  const response = await getTopTracks(token?.accessToken);
-  const {items } = await response.json();
+  // @ts-ignore
+  const accessToken: string = token?.accessToken;
+  const response = await getTopTracks(accessToken);
+  const { items } = await response.json();
   return res.status(200).json({items})
 
 
