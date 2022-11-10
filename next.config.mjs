@@ -13,5 +13,11 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: ['i.scdn.co']
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  }
 };
 export default config;

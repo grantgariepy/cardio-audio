@@ -1,7 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-// import Blurb from "./Blurb";
-// import { Link } from "react-scroll";
+import Image from "next/image";
 
 // test
 export default function TopTracks() {
@@ -20,54 +19,40 @@ export default function TopTracks() {
 
   const topTracks = list
     .map((item, index) => (
-      <main key={item["id"]}>
-        <div
-          key={item["id"]}
-          className={index.toString()}
-          id={index.toString()}
-        >
-          <div className="text" key={item["id"]}>
-            <div className="iconButton" key={item["id"]}>
-              <ul>
-                <li>
-                  <a
-                    href={item["album"]["external_urls"]["spotify"]}
-                    target="__blank"
-                  >
-                    {/* <span>
-                      <img src={item["album"]["images"][0]["url"]} />
-                    </span>
-                    <span>
-                      <img src={item["album"]["images"][0]["url"]} />
-                    </span>
-                    <span>
-                      <img src={item["album"]["images"][0]["url"]} />
-                    </span>
-                    <span>
-                      <img src={item["album"]["images"][0]["url"]} />
-                    </span>
-                    <span>
-                      <img src={item["album"]["images"][0]["url"]} />
-                    </span> */}
-                  </a>
-                </li>
-              </ul>
-            </div>
+      <>
+        <main key={item["id"]}>
+          <div
+            key={item["id"]}
+            className={index.toString()}
+            id={index.toString()}
+          >
+            <div className="text" key={item["id"]}>
+              <div className="iconButton" key={item["id"]}>
+                <ul>
+                  <li>
+                    <a
+                      href={item["album"]["external_urls"]["spotify"]}
+                      target="__blank"
+                    ></a>
+                  </li>
+                </ul>
+              </div>
 
-            {/* <Blurb key={item['id']} rank={index} /> */}
-            <h1 className="title">{item["name"]}</h1>
-            <h1 className="title"> by {item["artists"][0]["name"]}</h1>
+              <h1 className="title">{item["name"]}</h1>
+              <h1 className="title"> by {item["artists"][0]["name"]}</h1>
+            </div>
+            <div className="image">
+              <Image
+                width={500}
+                height={500}
+                alt="album"
+                src={item["album"]["images"][0]["url"]}
+                key={item["id"]}
+              />
+            </div>
           </div>
-          <div className="image">
-            <img src={item["album"]["images"][0]["url"]} />
-          </div>
-        </div>
-        {/* <div className="scrollButtonContainer" id="scroll">
-          <Link to={(index - 1).toString()} smooth={true}>
-            <button className="scrollButton">V</button>
-          </Link>
-        </div> */}
-      </main>
+        </main>
+      </>
     ))
     .reverse();
 
