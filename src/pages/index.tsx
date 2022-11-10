@@ -32,10 +32,10 @@ const Home: NextPage = () => {
                 </p>
                 {session ? (
                   <>
-                    {/* <p>Signed in as {session.token.name}</p> */}
+                    <p>Signed in as {session.user?.name}</p>
                     <div className="hero-content text-center">
                       {/* <img
-                        src={session?.token?.picture}
+                        src={session.user?.image}
                         alt=""
                         width="100px"
                         className="mask mask-circle"

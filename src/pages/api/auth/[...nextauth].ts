@@ -5,7 +5,7 @@ import SpotifyProvider from "next-auth/providers/spotify";
 import { env
  } from '../../../env/server.mjs';
 
-export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, {
+export const authOptions: NextAuthOptions = {
   providers: [
     // Passwordless / email sign in
     SpotifyProvider({
@@ -22,10 +22,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res,
       }
       return token;
     },
-    async session(session: any , user: any) {
-      session.user = user;
+    async session({session , user }) {
       return session;
     },
   },
   
-})
+}
+export default NextAuth(authOptions)
