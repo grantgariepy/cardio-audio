@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
     // Passwordless / email sign in
     SpotifyProvider({
       authorization:
-        'https://accounts.spotify.com/authorize?scope=user-read-email,user-top-read',
+        'https://accounts.spotify.com/authorize?scope=user-top-read',
       clientId: env.SPOTIFY_CLIENT_ID,
       clientSecret: env.SPOTIFY_CLIENT_SECRET,
     }),

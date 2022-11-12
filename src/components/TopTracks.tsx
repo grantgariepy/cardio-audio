@@ -20,10 +20,14 @@ export default function TopTracks() {
   const topTracks = list
     .map((item, index) => (
       <>
-        <main key={index}>
-          <div className={index.toString()} id={index.toString()}>
-            <div className="text">
-              <div className="iconButton">
+        <main key={item["id"]}>
+          <div
+            key={item["id"]}
+            className={index.toString()}
+            id={index.toString()}
+          >
+            <div className="text" key={item["id"]}>
+              <div className="iconButton" key={item["id"]}>
                 <ul>
                   <li>
                     <a
