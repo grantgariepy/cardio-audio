@@ -37,7 +37,7 @@ export default function TopTracks() {
                   </li>
                 </ul>
               </div>
-              <h1>You're number {index + 1} is: </h1>
+
               <h1 className="title">{item["name"]}</h1>
               <h1 className="title"> by {item["artists"][0]["name"]}</h1>
             </div>
