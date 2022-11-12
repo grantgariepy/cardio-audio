@@ -45,7 +45,7 @@ const Home: NextPage = () => {
                     >
                       Logout
                     </button>
-                    {/* <TopTracks /> */}
+                    <TopTracks />
                   </>
                 ) : (
                   <button
