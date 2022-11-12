@@ -19,8 +19,5 @@ const config = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  plugins: {
-    
-  }
 };
 export default config;
